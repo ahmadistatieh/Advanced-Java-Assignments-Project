@@ -7,14 +7,13 @@ import AfterTheRefactor.job.Job;
 public class JobExecutor {
 
     private final JobStrategyFactory strategyFactory;
-    private final ConnectionManager legacyConnectionManager; // موجود لو حبيت تستخدمه لاحقاً
+    private final ConnectionManager legacyConnectionManager; 
 
     public JobExecutor(JobStrategyFactory strategyFactory, ConnectionManager legacyConnectionManager) {
         this.strategyFactory = strategyFactory;
         this.legacyConnectionManager = legacyConnectionManager;
     }
 
-    // الميثود القديمة (موجودة بس عشان المتطلبات)
     public void executeJob(Job job) {
         throw new UnsupportedOperationException("Use proxy with executeJobWithConnection().");
     }
@@ -25,7 +24,7 @@ public class JobExecutor {
             System.out.println("No strategy registered for job type: " + job.getType());
             return;
         }
-        // ما في طباعة هون – التنفيذ الفعلي بس
+
         strategy.execute(job, connection);
     }
 }
